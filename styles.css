@@ -1,0 +1,168 @@
+/* General Navbar Styles */
+#navbar {
+    background-color: #343a40; /* Dark background color for the navbar */
+}
+
+.navbar {
+    padding: 10px 20px; /* Padding for the navbar */
+}
+
+.navbar-brand {
+    color: #2c3e50; /* Dark color for the brand text */
+    font-size: 24px; /* Larger font size for the brand */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.navbar-brand:hover {
+    color: #f39c12; /* Gold color on hover */
+}
+
+/* Center the Navbar Items */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.navbar-nav .nav-item {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.nav-link {
+    color: #2c3e50; /* Dark color for navbar links */
+    font-size: 16px; /* Slightly larger font size for readability */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.nav-link:hover {
+    color: #f39c12; /* Gold color on hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+/* Responsive navbar */
+.navbar-toggler-icon {
+    background-color: #fff; /* White color for the hamburger icon */
+}
+
+/* Navbar Background Hover */
+.navbar:hover {
+    background-color: #23272b; /* Slightly lighter background color on hover */
+}
+
+/* Adjust Navbar on smaller screens */
+@media (max-width: 992px) {
+    .navbar-nav {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    .navbar-nav .nav-item {
+        padding: 10px 0; /* Vertical padding between items */
+    }
+}
+
+
+
+/* Footer Styling */
+#footer {
+    background-color: #f8f9fa; /* Light gray background for contrast with white page */
+    color: #333; /* Dark text color for better readability */
+    padding: 40px 0; /* Padding for top and bottom */
+    font-family: 'Arial', sans-serif; /* Clean sans-serif font */
+}
+
+/* Footer Links Styling */
+#footer a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Dark text color for links */
+    transition: color 0.3s ease; /* Smooth transition effect for links */
+}
+
+#footer a:hover {
+    color: #f39c12; /* Gold color on hover */
+}
+
+/* Footer Title Styling (h5) */
+#footer h5 {
+    font-size: 18px; /* Slightly larger font for section headers */
+    font-weight: bold; /* Make headers bold */
+    color: #f39c12; /* Gold color for the section titles */
+    margin-bottom: 15px; /* Space between title and list */
+}
+
+/* Footer Text */
+#footer p {
+    font-size: 14px; /* Smaller font size for copyright text */
+    color: #666; /* Lighter gray for text */
+}
+
+/* Footer Layout for Desktop */
+footer.row-cols-1 {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: space-between; /* Spread out the footer sections */
+}
+
+footer .col {
+    flex: 1;
+    margin: 10px; /* Add some margin between columns */
+    min-width: 200px; /* Ensure columns do not get too narrow */
+}
+
+footer .nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer .nav-item {
+    margin-bottom: 10px; /* Space between each nav item */
+}
+
+footer .nav-link {
+    font-size: 14px; /* Smaller font size for links */
+    color: #666; /* Light gray text color */
+    text-transform: uppercase; /* Uppercase for better readability */
+    letter-spacing: 1px; /* Space out the letters slightly */
+}
+
+/* Footer Navigation Section Styling */
+footer .col.mb-3 {
+    padding-left: 30px; /* Add some padding to the left side for better alignment */
+}
+
+/* Footer Hover Effect for Links */
+footer .nav-item a:hover {
+    color: #f39c12; /* Change color to gold on hover */
+    text-decoration: underline; /* Underline the link on hover */
+}
+
+/* Footer at the bottom */
+#footer .container {
+    max-width: 1200px; /* Ensure content does not stretch too wide */
+    margin: 0 auto; /* Center align the content */
+}
+
+/* Responsive Design: Mobile View */
+@media (max-width: 768px) {
+    footer.row-cols-1 {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+
+    footer .col {
+        min-width: 100%; /* Make each column take up full width */
+        margin-bottom: 20px; /* Space between stacked columns */
+    }
+}
+
+
+/* button .btn-viewdetails{
+    margin-top: 10px;
+} */
+
+
