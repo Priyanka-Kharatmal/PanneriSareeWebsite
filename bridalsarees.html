@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bridal-Sarees| Panneri</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bridal-Sarees| Panneri</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <style>
+    .sticky-sidebar {
+      position: sticky;
+      top: 80px;
+      height: calc(100vh - 80px);
+      overflow-y: auto;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      transition: transform 0.2s ease-in-out;
+    }
+  </style>
+
 </head>
+
 <body>
   <div id="navbar">
     <nav class="navbar navbar-expand-lg" style="background-color: #800020;">
@@ -43,426 +59,450 @@
     </nav>
   </div>
 
-    <div class="container-fluid my-3">
-        <div class="row">
-          <!-- Sidebar: Filters Section with top margin -->
-          <div class="col-md-3 col-lg-2 p-3" style="height: 100vh; background-color: #f8f9fa; margin-top: 200px;">
-            <h5 class="text-center mb-3">Filters</h5>       
-            <!-- Availability Section -->
-            <div class="mb-3">
-              <h6 class="text-dark">Availability</h6>
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="in-stock">
-                    <label class="form-check-label" for="in-stock">
-                      In Stock <span class="badge bg-success">(50)</span>
-                    </label>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="out-of-stock">
-                    <label class="form-check-label" for="out-of-stock">
-                      Out of Stock <span class="badge bg-danger">(25)</span>
-                    </label>
-                  </a>
-                </li>
-              </ul>
-            </div>         
-            <hr>         
-            <!-- Price Section -->
-            <div class="mb-3">
-              <h6 class="text-dark">Price</h6>
-              <div class="d-flex justify-content-between">
-                <span>Low</span>
-                <span id="price-high">High</span>
-              </div> 
-              <input type="range" class="form-range" id="price-range" min="0" max="150000" step="100" value="0" oninput="updatePriceLabel(this.value)">
-              <div class="d-flex justify-content-between">
-                <span id="price-min">₹0</span>
-                <span id="price-display">₹0</span>
-                <span id="price-max">₹150000</span>
-              </div>
-            </div>            
-            <hr>            
-            <!-- Size Section -->
-            <div class="mb-3">
-              <h6 class="text-dark">Size</h6>
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="size-s">
-                    <label class="form-check-label" for="size-s">Small</label>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="size-m">
-                    <label class="form-check-label" for="size-m">Medium</label>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="size-l">
-                    <label class="form-check-label" for="size-l">Large</label>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link text-dark">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="size-xl">
-                    <label class="form-check-label" for="size-xl">XL</label>
-                  </a>
-                </li>
-              </ul>
-            </div>             
-            <hr>
+  <div class="container-fluid my-3">
+    <div class="row">
+      <button id="toggleFilterBtn" class="btn btn-primary d-block d-md-none m-2">
+        Show Filters
+      </button>
+      <!-- Sidebar: Filters Section with top margin -->
+      <div id="filterSidebar" class="col-md-3 col-lg-2 p-3 sticky-sidebar d-none d-md-block"
+        style="background-color: #f8f9fa;">
+        <h5 class="text-center mb-3">Filters</h5>
+        <!-- Availability Section -->
+        <div class="mb-3">
+          <h6 class="text-dark">Availability</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">
+                <input class="form-check-input me-2" type="checkbox" value="" id="in-stock">
+                <label class="form-check-label" for="in-stock">
+                  In Stock <span class="badge bg-success">(50)</span>
+                </label>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">
+                <input class="form-check-input me-2" type="checkbox" value="" id="out-of-stock">
+                <label class="form-check-label" for="out-of-stock">
+                  Out of Stock <span class="badge bg-danger">(25)</span>
+                </label>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr>
+        <!-- Price Section -->
+        <div class="mb-3">
+          <h6 class="text-dark">Price</h6>
+          <div class="d-flex justify-content-between">
+            <span>Low</span>
+            <span id="price-high">High</span>
           </div>
-      
-  
-          <!-- Lehenga Section (Images) -->
-          <div class="col-md-9 col-lg-10 p-0">
-            <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
-              <h1 class="display-4 fw-normal text-body-emphasis">Bridal Sarees</h1>           
-            </div>
-            
-            <div id="lehengas">
-              <div class="container">
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar1.jpeg" alt="Saree 1" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹30,000/-</small>
-                        </div>
+          <input type="range" class="form-range" id="price-range" min="0" max="150000" step="100" value="0"
+            oninput="updatePriceLabel(this.value)">
+          <div class="d-flex justify-content-between">
+            <span id="price-min">₹0</span>
+            <span id="price-display">₹0</span>
+            <span id="price-max">₹150000</span>
+          </div>
+        </div>
+        <hr>
+        <!-- Size Section -->
+        <div class="mb-3">
+          <h6 class="text-dark">Size</h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">
+                <input class="form-check-input me-2" type="checkbox" value="" id="size-s">
+                <label class="form-check-label" for="size-s">Small</label>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">
+                <input class="form-check-input me-2" type="checkbox" value="" id="size-m">
+                <label class="form-check-label" for="size-m">Medium</label>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">
+                <input class="form-check-input me-2" type="checkbox" value="" id="size-l">
+                <label class="form-check-label" for="size-l">Large</label>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">
+                <input class="form-check-input me-2" type="checkbox" value="" id="size-xl">
+                <label class="form-check-label" for="size-xl">XL</label>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr>
+      </div>
+
+
+      <!-- Lehenga Section (Images) -->
+      <div class="col-md-9 col-lg-10 p-0">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+          <h1 class="display-4 fw-normal text-body-emphasis">Bridal Sarees</h1>
+        </div>
+
+        <div id="lehengas">
+          <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar1.jpeg" alt="Saree 1" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar2.jpeg" alt="Saree 2" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹20,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar3.jpeg" alt="Saree 3" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹25,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar4.jpeg" alt="Saree 1" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹22,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar5.jpeg" alt="Saree 2" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹35,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar6.jpeg" alt="Saree 3" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹30,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar7.jpeg" alt="Saree 1" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹25,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar8.jpeg" alt="Saree 2" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹21,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar9.jpeg" alt="Saree 3" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹28,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar10.jpeg" alt="Saree 1" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹30,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar11.jpeg" alt="Saree 2" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹21,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar12.jpeg" alt="Saree 3" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹26,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar13.jpeg" alt="Saree 1" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹15,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar14.jpeg" alt="Saree 2" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹22,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar15.jpeg" alt="Saree 3" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹30,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar16.jpeg" alt="Saree 1" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹40,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar17.jpeg" alt="Saree 2" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹25,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar18.jpeg" alt="Saree 3" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹40,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar19.jpeg" alt="Saree 1" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹35,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar20.jpeg" alt="Saree 2" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹45,000/-</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col">
-                    <div class="card shadow-sm">
-                      <img src="static/bridal saree/bsar21.jpeg" alt="Saree 3" class="card-img-top" height="550px">
-                      <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
-                          </div>
-                          <small class="text-body-secondary">₹25,000/-</small>
-                        </div>
-                      </div>
+                      <small class="text-body-secondary">₹30,000/-</small>
                     </div>
                   </div>
                 </div>
-              </div> 
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar2.jpeg" alt="Saree 2" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹20,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar3.jpeg" alt="Saree 3" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹25,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar4.jpeg" alt="Saree 1" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹22,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar5.jpeg" alt="Saree 2" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹35,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar6.jpeg" alt="Saree 3" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹30,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar7.jpeg" alt="Saree 1" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹25,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar8.jpeg" alt="Saree 2" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹21,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar9.jpeg" alt="Saree 3" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹28,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar10.jpeg" alt="Saree 1" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹30,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar11.jpeg" alt="Saree 2" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹21,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar12.jpeg" alt="Saree 3" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹26,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar13.jpeg" alt="Saree 1" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹15,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar14.jpeg" alt="Saree 2" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹22,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar15.jpeg" alt="Saree 3" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹30,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar16.jpeg" alt="Saree 1" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹40,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar17.jpeg" alt="Saree 2" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹25,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar18.jpeg" alt="Saree 3" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹40,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar19.jpeg" alt="Saree 1" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 1">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹35,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar20.jpeg" alt="Saree 2" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 2">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹45,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="static/bridal saree/bsar21.jpeg" alt="Saree 3" class="card-img-top" height="550px">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-outline-primary" title="View Saree 3">View</button>
+                      </div>
+                      <small class="text-body-secondary">₹25,000/-</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div id="footer" style="background-color: #800020; color: white; padding: 40px 0;">
-        <div class="container">
-          <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 border-top">
-            <div class="col mb-3">
-              <a href="/" class="d-flex align-items-center mb-3 link-light text-decoration-none">
-                <h4>Panneri</h4>
-              </a>
-              <p>© 2024 Panneri. All rights reserved.</p>
-            </div>
-            <div class="col mb-3"></div>
-            <div class="col mb-3">
-              <h5>Quick Links</h5>
-              <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0 text-light">Home</a></li>
-                <li class="nav-item mb-2"><a href="sarees.html" class="nav-link p-0 text-light">Sarees</a></li>
-                <li class="nav-item mb-2"><a href="lehenga.html" class="nav-link p-0 text-light">Lehenga</a></li>
-                <li class="nav-item mb-2"><a href="bridal.html" class="nav-link p-0 text-light">Bridal</a></li>
-                <li class="nav-item mb-2"><a href="aboutus.html" class="nav-link p-0 text-light">About</a></li>
-              </ul>
-            </div>
-            <div class="col mb-3">
-              <h5>Customer Service</h5>
-              <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="contactus.html" class="nav-link p-0 text-light">Contact</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
-                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Returns</a></li>
-              </ul>
-            </div>
-            <div class="col mb-3">
-              <h5>Follow Us</h5>
-              <ul class="nav">
-                <li class="nav-item">
-                  <a href="#" class="nav-link p-0 text-light">Facebook</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link p-0 text-light">Instagram</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link p-0 text-light">Twitter</a>
-                </li>
-              </ul>
-            </div>
-          </footer>
+  <div id="footer" style="background-color: #800020; color: white; padding: 40px 0;">
+    <div class="container">
+      <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 border-top">
+        <div class="col mb-3">
+          <a href="/" class="d-flex align-items-center mb-3 link-light text-decoration-none">
+            <h4>Panneri</h4>
+          </a>
+          <p>© 2024 Panneri. All rights reserved.</p>
         </div>
-      </div>
+        <div class="col mb-3"></div>
+        <div class="col mb-3">
+          <h5>Quick Links</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="index.html" class="nav-link p-0 text-light">Home</a></li>
+            <li class="nav-item mb-2"><a href="sarees.html" class="nav-link p-0 text-light">Sarees</a></li>
+            <li class="nav-item mb-2"><a href="lehenga.html" class="nav-link p-0 text-light">Lehenga</a></li>
+            <li class="nav-item mb-2"><a href="bridal.html" class="nav-link p-0 text-light">Bridal</a></li>
+            <li class="nav-item mb-2"><a href="aboutus.html" class="nav-link p-0 text-light">About</a></li>
+          </ul>
+        </div>
+        <div class="col mb-3">
+          <h5>Customer Service</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="contactus.html" class="nav-link p-0 text-light">Contact</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Returns</a></li>
+          </ul>
+        </div>
+        <div class="col mb-3">
+          <h5>Follow Us</h5>
+          <ul class="nav">
+            <li class="nav-item">
+              <a href="#" class="nav-link p-0 text-light">Facebook</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link p-0 text-light">Instagram</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link p-0 text-light">Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+  </div>
 
-    <!-- Include a script to dynamically update the displayed value -->
-    <script>
-        function updatePriceLabel(value) {
-          document.getElementById("price-display").textContent = `₹${value.toLocaleString()}/-`;
-        }
-      </script>
+  <!-- Include a script to dynamically update the displayed value -->
+  <script>
+    function updatePriceLabel(value) {
+      document.getElementById("price-display").textContent = `₹${value.toLocaleString()}/-`;
+    }
 
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    const btn = document.getElementById('toggleFilterBtn');
+    const sidebar = document.getElementById('filterSidebar');
+
+    let isVisible = false;
+
+    btn.addEventListener('click', () => {
+      if (isVisible) {
+        sidebar.classList.add('d-none');
+        btn.textContent = 'Show Filters';
+      } else {
+        sidebar.classList.remove('d-none');
+        btn.textContent = 'Hide Filters';
+      }
+      isVisible = !isVisible;
+    });
+  </script>
+
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
